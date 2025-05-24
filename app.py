@@ -16,6 +16,10 @@ client = MongoClient(os.getenv("MONGO_URI"))
 db = client["feedbackDB"]
 feedback_collection = db["feedbacks"]
 
+@app.route("/", methods=["GET"])
+def home():
+    return jsonify({"message": "Backend is running"}), 200
+
 @app.route("/feedback", methods=["POST"])
 def submit_feedback():
     data = request.get_json()
